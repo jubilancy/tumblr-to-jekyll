@@ -1,0 +1,12 @@
+---
+layout: default
+---
+<section class="listing">
+  <p class="crumb"><a href="{{ page.taxonomy | prepend: '/' | append: '/' | relative_url }}">← {{ page.taxonomy }}</a></p>
+  <h1>{{ page.term }} <small>{{ page.posts.size }}</small></h1>
+</section>
+<div class="tiles" id="tiles" data-layout="masonry">
+  {%- for post in page.posts -%}
+    {%- include tile.html post=post eager=false -%}
+  {%- endfor -%}
+</div>

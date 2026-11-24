@@ -1,0 +1,21 @@
+---
+layout: default
+title: Archive
+permalink: /archive/
+---
+<section class="listing archive">
+  <h1>archive <small>{{ site.posts.size }}</small></h1>
+  {%- assign years = site.posts | group_by_exp: "p", "p.date | date: '%Y'" -%}
+  {%- for y in years %}
+  <h2>{{ y.name }}</h2>
+  {%- assign months = y.items | group_by_exp: "p", "p.date | date: '%B'" %}
+  {%- for m in months %}
+  <h3>{{ m.name }}</h3>
+  <ul>
+    {%- for p in m.items %}
+    <li><time>{{ p.date | date: "%-d" }}</time> <a href="{{ p.url | relative_url }}">{{ p.summary | default: p.content | strip_html | strip_newlines | normalize_whitespace | truncate: 70 | default: p.id }}</a>{% assign n = p.images | size %}{% if n > 0 %} <span class="dim">⧉ {{ n }}</span>{% endif %}</li>
+    {%- endfor %}
+  </ul>
+  {%- endfor %}
+  {%- endfor %}
+</section>

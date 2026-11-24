@@ -1,0 +1,29 @@
+---
+layout: default
+title: Navigate
+permalink: /navigate/
+navigate: true
+---
+<section class="listing navigate">
+  <h1>navigate</h1>
+  <input id="q" class="search" type="search" placeholder="search posts, tags, themes…" autocomplete="off" aria-label="search">
+  <p id="status" class="dim" aria-live="polite"></p>
+  <ul id="results" class="results"></ul>
+
+  <h2>everywhere</h2>
+  <p class="cloud pages">
+    <a href="{{ '/' | relative_url }}">home</a>
+    <a href="{{ '/archive/' | relative_url }}">archive</a>
+    <a href="{{ '/tags/' | relative_url }}">tags</a>
+    <a href="{{ '/themes/' | relative_url }}">themes</a>
+    <a href="{{ '/categories/' | relative_url }}">categories</a>
+    <a href="{{ '/feed.xml' | relative_url }}">feed</a>
+    <a href="https://fromdaysoff.tumblr.com/">tumblr</a>
+  </p>
+  <h2>top tags</h2>
+  <p class="cloud">
+    {%- for t in site.taxonomies.tags limit: 60 -%}
+      {%- if t.page %}<a href="{{ '/tags/' | append: t.slug | append: '/' | relative_url }}">{{ t.name }}<sup>{{ t.count }}</sup></a>{% endif -%}
+    {%- endfor -%}
+  </p>
+</section>
