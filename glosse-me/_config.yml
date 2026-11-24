@@ -9,6 +9,10 @@ url: https://jubilancy.github.io
 baseurl: /tumblr-to-jekyll
 timezone: UTC
 
+# Posts without their own `permalink` (new ones made in the CMS) get /post/<slug>/.
+# Imported Tumblr posts set /post/<tumblr id>/ in their front matter.
+permalink: /post/:slug/
+
 theme: null            # layouts live in this folder
 markdown: kramdown
 kramdown:

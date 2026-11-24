@@ -24,6 +24,23 @@ Top bar, then a masonry of tiles (one tile per post, `⧉ 9` marks posts with se
 - **Tag, theme and category pages** come from front matter. Tags come from Tumblr. Add `themes: [name]` or `categories: [name]` to any post (by hand or in a CMS) and the pages appear on the next build. Tags used only once get no page of their own (about 1,800 of them), but they stay searchable and listed under "all tags" on `/tags/`.
 - Code: `_plugins/blog.rb` (taxonomy pages, image sizing), `assets/js/blog.js` (tiles, masonry, load-more), `lightbox.js`, `navigate.js`.
 
+## Admin (Sveltia CMS)
+
+The editor lives at `/admin/` (for now `https://jubilancy.github.io/tumblr-to-jekyll/admin/`). Config: `glosse-me/admin/config.yml`.
+
+**Sign in:** click **Sign In Using Access Token** and paste a GitHub personal access token. Create a fine-grained token for this repo only with **Contents: read and write** (GitHub: Settings → Developer settings → Personal access tokens → Fine-grained tokens). The **Sign In with GitHub** button needs an OAuth client, which isn't set up yet.
+
+**What you can do**
+- Write or edit posts (markdown editor); images are picked from, and uploaded to, Cloudinary.
+- **Bulk edit:** open Posts, click **Edit** in the toolbar for a spreadsheet-style table of Published, Title, Themes and Categories. Changes save in one commit. Filter first to edit only some posts.
+- **Themes and categories are comma-separated text** (`medieval art, maps`) because Sveltia can only bulk-edit single-value fields, not lists. Tags stay a list (edited per post). The theme reads either form.
+- Hide a post by turning **Published** off; it stays in the repo but not on the site.
+- Posts made in the CMS get their URL from the filename (`/post/<slug>/`) and their cover image and size from the first Cloudinary image in the body (the size is looked up from Cloudinary at build time).
+
+Fields the CMS doesn't know about (`images`, `reblog_trail`, `id`, `permalink` on imported posts) are written back unchanged, per Sveltia's docs. Check the first commit it makes to a post to confirm nothing was dropped.
+
+The Cloudinary **API key** in the config is public by design; never put the API secret there.
+
 ## Run the importer
 
 Set two environment variables (never commit them):
@@ -54,4 +71,5 @@ Repo **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 - Import: 305 posts and 900 images, 0 errors.
 - Theme: built and tested in a browser (home, grid, post, lightbox, tags, search, mobile).
 - Not yet imported: 338 posts that appear in the Tumblr export but are no longer on the live blog (plan: import as hidden posts).
-- Not yet built: the admin editor, and the final cutover.
+- Admin: Sveltia CMS configured and loads; not yet tried with a real sign-in and save.
+- Not yet built: Cloudflare Access in front of the admin (needs the custom domain), and the final cutover.
