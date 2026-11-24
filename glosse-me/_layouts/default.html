@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="{{ site.lang }}" data-theme="light">
+<head>
+  {% include head.html %}
+</head>
+<body class="page-{{ page.layout }}">
+  <a class="skip" href="#main">skip to content</a>
+  {% include header.html %}
+  <main id="main">
+    {{ content }}
+  </main>
+  {% include footer.html %}
+  <script>window.BLOG = { base: "{{ site.baseurl }}", batch: {{ site.tiles_batch }} };</script>
+  <script src="{{ '/assets/js/blog.js' | relative_url }}" defer></script>
+  {%- if page.layout == 'post' %}
+  <script src="{{ '/assets/js/lightbox.js' | relative_url }}" defer></script>
+  {%- endif %}
+  {%- if page.navigate %}
+  <script src="{{ '/assets/js/navigate.js' | relative_url }}" defer></script>
+  {%- endif %}
+</body>
+</html>

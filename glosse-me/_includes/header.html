@@ -1,0 +1,14 @@
+<header class="bar">
+  <a class="brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+  <nav class="bar-nav" aria-label="main">
+    <a href="{{ '/navigate/' | relative_url }}" aria-label="search and navigate" title="search">⌕</a>
+    <a href="{{ '/themes/' | relative_url }}"{% if page.url contains '/themes' %} aria-current="page"{% endif %}>themes</a>
+    <a href="{{ '/tags/' | relative_url }}"{% if page.url contains '/tags' %} aria-current="page"{% endif %}>tags</a>
+    <a href="{{ '/categories/' | relative_url }}"{% if page.url contains '/categories' %} aria-current="page"{% endif %}>categories</a>
+    <span class="layout-switch" role="group" aria-label="layout" hidden>
+      <button type="button" data-layout-btn="masonry" title="masonry" aria-label="masonry layout">▤</button>
+      <button type="button" data-layout-btn="grid" title="grid" aria-label="grid layout">▦</button>
+    </span>
+    <button type="button" class="theme-toggle" aria-label="toggle dark mode" title="light / dark">☀</button>
+  </nav>
+</header>

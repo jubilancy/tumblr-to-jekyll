@@ -1,0 +1,3 @@
+# importer run logs and scratch output
+results-log-*.txt
+site-import/

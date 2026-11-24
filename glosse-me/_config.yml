@@ -1,0 +1,37 @@
+title: from days off
+tagline: an archive of fromdaysoff.tumblr.com
+description: Archive of fromdaysoff.tumblr.com
+lang: en
+
+# GitHub Pages project site for now. When it moves to blog.glosse.me, set
+# url: https://blog.glosse.me and baseurl: "".
+url: https://jubilancy.github.io
+baseurl: /tumblr-to-jekyll
+timezone: UTC
+
+theme: null            # layouts live in this folder
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+# Importer working files stay out of the build.
+exclude: [raw, state.json, Gemfile, Gemfile.lock, vendor, README.md]
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+feed:
+  path: feed.xml       # one Atom feed for the whole blog
+  posts_limit: 50
+
+# Posts per batch the tile grid loads as you scroll.
+tiles_batch: 24
+# Tag pages are only made for tags used at least this many times;
+# rarer tags are still searchable and listed on /tags/.
+tag_page_min: 2
+
+defaults:
+  - scope: {path: "", type: posts}
+    values: {layout: post}

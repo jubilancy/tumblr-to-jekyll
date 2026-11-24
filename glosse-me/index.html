@@ -1,0 +1,15 @@
+---
+layout: default
+title: Home
+description: Archive of fromdaysoff.tumblr.com
+---
+{%- comment -%}
+  First batch is rendered here; blog.js loads the rest from /posts.json as you scroll.
+{%- endcomment -%}
+<div class="tiles" id="tiles" data-layout="masonry" data-feed="posts">
+  {%- for post in site.posts limit: site.tiles_batch -%}
+    {%- include tile.html post=post eager=forloop.first -%}
+  {%- endfor -%}
+</div>
+<div id="more" class="more" aria-live="polite"></div>
+<noscript><p class="empty">More posts load as you scroll. Without JavaScript, see the <a href="{{ '/archive/' | relative_url }}">archive</a>.</p></noscript>

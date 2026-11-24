@@ -1,0 +1,8 @@
+source "https://rubygems.org"
+
+# Built by GitHub Actions (.github/workflows/pages.yml), so plain Jekyll plus
+# a custom plugin (_plugins/) is fine; the github-pages gem is not needed.
+gem "jekyll", "~> 4.3"
+gem "jekyll-feed"
+gem "jekyll-sitemap"
+gem "webrick"

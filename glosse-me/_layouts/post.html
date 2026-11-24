@@ -1,0 +1,29 @@
+---
+layout: default
+---
+<article class="post">
+  <header class="post-head">
+    <a class="back" href="{{ '/' | relative_url }}" aria-label="back to all posts">←</a>
+    <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+  </header>
+
+  <div class="post-body">
+    {{ content }}
+  </div>
+
+  <footer class="post-foot">
+    {% include terms.html kind="themes" prefix="" %}
+    {% include terms.html kind="categories" prefix="" %}
+    {% include terms.html kind="tags" prefix="#" %}
+    <p class="post-src">
+      {%- assign trail = page.reblog_trail | first -%}
+      {%- if trail %}reblogged from <a href="{{ trail.url }}">@{{ trail.blog }}</a> · {% endif -%}
+      <a href="{{ page.source_url }}">original on tumblr</a>
+    </p>
+  </footer>
+
+  <nav class="post-nav" aria-label="more posts">
+    {%- if page.previous %}<a class="newer" href="{{ page.previous.url | relative_url }}">← newer</a>{% else %}<span></span>{% endif %}
+    {%- if page.next %}<a class="older" href="{{ page.next.url | relative_url }}">older →</a>{% endif %}
+  </nav>
+</article>

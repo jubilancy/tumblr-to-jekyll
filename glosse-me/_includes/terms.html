@@ -1,0 +1,9 @@
+{%- comment -%} Links for one taxonomy of the current post. Params: kind (tags|themes|categories), prefix (e.g. "#"). {%- endcomment -%}
+{%- assign list = page.term_links[include.kind] -%}
+{%- if list and list.size > 0 -%}
+<ul class="terms terms-{{ include.kind }}">
+  {%- for t in list -%}
+  <li>{% if t.slug %}<a href="{{ include.kind | prepend: '/' | append: '/' | append: t.slug | append: '/' | relative_url }}">{{ include.prefix }}{{ t.name }}</a>{% else %}<a href="{{ '/navigate/' | relative_url }}?q={{ t.name | uri_escape }}">{{ include.prefix }}{{ t.name }}</a>{% endif %}</li>
+  {%- endfor -%}
+</ul>
+{%- endif -%}
