@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+#
+# Sveltia CMS for the Tumblr archive. Sign in with a GitHub personal access token
+# (fine-grained, this repo only, "Contents: read and write") or an OAuth client.
+backend:
+  name: github
+  repo: jubilancy/tumblr-to-jekyll
+  branch: main
+
+# Images live on Cloudinary. The API key is public by design (Sveltia's docs say so);
+# the API secret is never needed here and must never be added.
+media_libraries:
+  cloudinary:
+    config:
+      cloud_name: drei0owoe
+      api_key: "637253611119349"
+    use_transformations: false   # keep plain /image/upload/v123/... URLs, which the theme expects
+
+# Posts keep their images in Cloudinary, so nothing is uploaded into the repo.
+media_folder: glosse-me/assets/uploads
+public_folder: /assets/uploads
+
+collections:
+  - name: posts
+    label: Posts
+    label_singular: Post
+    folder: glosse-me/_posts
+    extension: md
+    format: yaml-frontmatter
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} ({{date | date('YYYY-MM-DD')}})"
+    sortable_fields: [date, title, published]
+    # Spreadsheet-style table (Edit button in the toolbar). Sveltia can only bulk-edit
+    # single-value fields, so themes and categories are comma-separated text here.
+    bulk_edit:
+      fields: [published, title, themes, categories]
+    fields:
+      - { name: layout, label: Layout, widget: hidden, default: post }
+      - { name: title, label: Title, widget: string, required: false }
+      - { name: date, label: Date, widget: datetime, default: "{{now}}" }
+      - { name: published, label: Published, widget: boolean, default: true, hint: "Turn off to hide a post from the site (it stays in the repo)." }
+      - { name: themes, label: Themes, widget: string, required: false, hint: "Comma-separated, e.g. medieval art, maps" }
+      - { name: categories, label: Categories, widget: string, required: false, hint: "Comma-separated, e.g. books, film" }
+      - { name: tags, label: Tags, widget: list, required: false }
+      - { name: type, label: Type, widget: select, options: [photo, reblog, text, ask], default: photo }
+      - { name: source_url, label: Original Tumblr URL, widget: string, required: false }
+      - { name: body, label: Body, widget: markdown }

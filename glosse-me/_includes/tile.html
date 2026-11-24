@@ -11,7 +11,7 @@
   {%- else -%}
     {%- assign tx = '/image/upload/c_limit,w_480,f_auto,q_auto/' -%}
   {%- endif -%}
-<a class="tile" href="{{ p.url | relative_url }}" data-id="{{ p.id }}" style="--ar:{{ cover.width }} / {{ cover.height }}"><img src="{{ cover.url | replace: '/image/upload/', tx }}" width="{{ cover.width }}" height="{{ cover.height }}" alt="{{ cover.alt | escape }}" decoding="async"{% unless include.eager %} loading="lazy"{% endunless %}>{% if n > 1 %}<span class="badge">⧉ {{ n }}</span>{% endif %}</a>
+<a class="tile" href="{{ p.url | relative_url }}" data-id="{{ p.id }}" style="--ar:{{ cover.width | default: 1 }} / {{ cover.height | default: 1 }}"><img src="{{ cover.url | replace: '/image/upload/', tx }}" width="{{ cover.width | default: 1 }}" height="{{ cover.height | default: 1 }}" alt="{{ cover.alt | escape }}" decoding="async"{% unless include.eager %} loading="lazy"{% endunless %}>{% if n > 1 %}<span class="badge">⧉ {{ n }}</span>{% endif %}</a>
 {%- else -%}
 <a class="tile tile-text" href="{{ p.url | relative_url }}" data-id="{{ p.id }}"><time>{{ p.date | date: "%b %-d, %Y" }}</time><p>{{ p.summary | default: p.content | strip_html | strip_newlines | normalize_whitespace | truncate: 140 }}</p></a>
 {%- endif %}
