@@ -7,6 +7,7 @@ First target: [fromdaysoff.tumblr.com](https://fromdaysoff.tumblr.com/) to gloss
 
 | Path | What it is |
 |---|---|
+| `scripts/export_html_to_jekyll.py` | Reads a Tumblr export's `posts.zip` and writes hidden Jekyll posts (`published: false`) for posts that are no longer on the live blog. Text, links and tags only; pictures stay on your computer (file names kept in `export_media`). Resumable, writes a results log. |
 | `scripts/tumblr_to_jekyll.py` | Importer. Pages through the Tumblr API, writes one Jekyll post per Tumblr post, uploads every image to Cloudinary as `tumblr/fromdaysoff/<post-id>_<n>`. Resumable, writes a `results-log-*.txt` on every run. |
 | `glosse-me/` | The Jekyll site: theme, plugin and the 305 imported posts in `_posts/`. |
 | `glosse-me/raw/` | Each post's full Tumblr API response, so posts can be re-rendered without calling the API again. |
@@ -70,6 +71,6 @@ Repo **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 
 - Import: 305 posts and 900 images, 0 errors.
 - Theme: built and tested in a browser (home, grid, post, lightbox, tags, search, mobile).
-- Not yet imported: 338 posts that appear in the Tumblr export but are no longer on the live blog (plan: import as hidden posts).
+- Hidden posts: 338 posts from the Tumblr export that are no longer on the live blog are in `_posts/` with `published: false` (text and tags only; their pictures were never uploaded). They don't appear on the site; switch **Published** on in the CMS to show one.
 - Admin: Sveltia CMS configured and loads; not yet tried with a real sign-in and save.
 - Not yet built: Cloudflare Access in front of the admin (needs the custom domain), and the final cutover.
