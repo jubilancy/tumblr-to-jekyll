@@ -31,7 +31,7 @@ The editor lives at `/admin/` (for now `https://jubilancy.github.io/tumblr-to-je
 **Sign in:** click **Sign In Using Access Token** and paste a GitHub personal access token. Create a fine-grained token for this repo only with **Contents: read and write** (GitHub: Settings → Developer settings → Personal access tokens → Fine-grained tokens). The **Sign In with GitHub** button needs an OAuth client, which isn't set up yet.
 
 **What you can do**
-- Write or edit posts (markdown editor); images are picked from, and uploaded to, Cloudinary.
+- Write or edit posts (markdown editor); images are picked from, and uploaded to, Cloudinary (the repo upload folder is switched off, so Cloudinary is the only place images go).
 - **Bulk edit:** open Posts, click **Edit** in the toolbar for a spreadsheet-style table of Published, Title, Themes and Categories. Changes save in one commit. Filter first to edit only some posts.
 - **Themes and categories are comma-separated text** (`medieval art, maps`) because Sveltia can only bulk-edit single-value fields, not lists. Tags stay a list (edited per post). The theme reads either form.
 - Hide a post by turning **Published** off; it stays in the repo but not on the site.

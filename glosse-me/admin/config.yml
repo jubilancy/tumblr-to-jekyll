@@ -16,9 +16,8 @@ media_libraries:
       api_key: "637253611119349"
     use_transformations: false   # keep plain /image/upload/v123/... URLs, which the theme expects
 
-# Posts keep their images in Cloudinary, so nothing is uploaded into the repo.
-media_folder: glosse-me/assets/uploads
-public_folder: /assets/uploads
+# No media_folder on purpose: that turns off Sveltia's repo upload storage, so
+# Cloudinary is the only place images can go (see Sveltia's "Disabling Internal Media Storage").
 
 collections:
   - name: posts
